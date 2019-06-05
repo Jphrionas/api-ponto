@@ -7,10 +7,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+// @ActiveProfiles("test") // | application-test.properies
 public class ApiPontoApplicationTests {
-
+	
 	@Test
-	public void contextLoads() {
-	}
-
+	public void contextLoads() {}
+	
 }
+
+// java -jar -Dspring.profiles.active=test api.jar | application-tets.properties
