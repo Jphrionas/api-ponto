@@ -9,7 +9,7 @@ public class EmpresaDTO implements DTO {
 	private String publicId;
 	private String privateId;
 	private String razaoSocial;
-	private String numeroIncricao;
+	private String numeroInscricao;
 	private String cnpj;
 	private Date dataCriacao;
 	private Date dataAtualizacao;	
@@ -33,13 +33,6 @@ public class EmpresaDTO implements DTO {
 	}
 	public void setRazaoSocial(String razaoSocial) {
 		this.razaoSocial = razaoSocial;
-	}
-	
-	public String getNumeroIncricao() {
-		return numeroIncricao;
-	}
-	public void setNumeroIncricao(String numeroIncricao) {
-		this.numeroIncricao = numeroIncricao;
 	}
 	
 	public String getCnpj() {
@@ -68,5 +61,11 @@ public class EmpresaDTO implements DTO {
 	}
 	public void setPrivateId(String privateId) {
 		this.privateId = privateId;
+	}
+	public String getNumeroInscricao() {
+		return numeroInscricao;
+	}
+	public void setNumeroInscricao(String numeroInscricao) {
+		this.numeroInscricao = numeroInscricao;
 	}
 }

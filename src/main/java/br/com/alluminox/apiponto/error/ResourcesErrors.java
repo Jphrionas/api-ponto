@@ -14,6 +14,7 @@ public class ResourcesErrors implements Serializable {
 	@ExceptionHandler(RuntimeException.class)
 	public ResponseEntity<?> runtimeErrorExceptionHandler(RuntimeException ex) {
 		ErrorMessage errorMessage = new ErrorMessage();
+		errorMessage.setName("Bad Request");
 		errorMessage.setMessage(ex.getMessage());
 		errorMessage.setStatusCode(HttpStatus.BAD_REQUEST.value());
 		errorMessage.setDevelloperMessage(ex.getLocalizedMessage());

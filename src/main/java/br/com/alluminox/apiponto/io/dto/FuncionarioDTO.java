@@ -13,6 +13,7 @@ public class FuncionarioDTO implements DTO {
 	private String publicId;
 	private String image;
 	private String token;
+	private Long expirationTime;
 	private String nome;
 	private String sobrenome;
 	private String email;
@@ -152,6 +153,12 @@ public class FuncionarioDTO implements DTO {
 	}
 	public void setEmpresa(EmpresaDTO empresa) {
 		this.empresa = empresa;
+	}
+	public Long getExpirationTime() {
+		return expirationTime;
+	}
+	public void setExpirationTime(Long expirationTime) {
+		this.expirationTime = expirationTime;
 	}
 	
 }

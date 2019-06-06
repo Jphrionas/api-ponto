@@ -7,7 +7,7 @@ public class EmpresaResponseModel implements Serializable {
 	
 	private String publicId;
 	private String razaoSocial;
-	private String numeroIncricao;
+	private String numeroInscricao;
 	private String cnpj;
 	
 	public String getPublicId() {
@@ -24,11 +24,11 @@ public class EmpresaResponseModel implements Serializable {
 		this.razaoSocial = razaoSocial;
 	}
 	
-	public String getNumeroIncricao() {
-		return numeroIncricao;
+	public String getNumeroInscricao() {
+		return numeroInscricao;
 	}
-	public void setNumeroIncricao(String numeroIncricao) {
-		this.numeroIncricao = numeroIncricao;
+	public void setNumeroIncricao(String numeroInscricao) {
+		this.setNumeroInscricao(numeroInscricao);
 	}
 	
 	public String getCnpj() {
@@ -36,6 +36,9 @@ public class EmpresaResponseModel implements Serializable {
 	}
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
+	}
+	public void setNumeroInscricao(String numeroInscricao) {
+		this.numeroInscricao = numeroInscricao;
 	}
 	
 }

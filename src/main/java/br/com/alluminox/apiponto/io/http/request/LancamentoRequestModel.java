@@ -8,9 +8,6 @@ import br.com.alluminox.apiponto.io.model.enums.TipoLancamento;
 public class LancamentoRequestModel implements RequestModel {
 	private static final long serialVersionUID = 1L;
 
-	@NotEmpty(message = "O campo publicId é obrigatório")
-	private String publicId;
-
 	@NotEmpty(message = "O campo descrição é obrigatório")
 	private String descricao;
 
@@ -19,16 +16,6 @@ public class LancamentoRequestModel implements RequestModel {
 
 	@NotNull(message = "O campo lancamento é obrigatório")
 	private TipoLancamento tipoLancamento;
-
-	@NotNull(message = "Atribua o funcionario a este lançamento!")
-	private FuncionarioRequestModel funcionario;
-
-	public String getPublicId() {
-		return publicId;
-	}
-	public void setPublicId(String publicId) {
-		this.publicId = publicId;
-	}
 
 	public String getDescricao() {
 		return descricao;
@@ -49,12 +36,5 @@ public class LancamentoRequestModel implements RequestModel {
 	}
 	public void setTipoLancamento(TipoLancamento tipoLancamento) {
 		this.tipoLancamento = tipoLancamento;
-	}
-
-	public FuncionarioRequestModel getFuncionario() {
-		return funcionario;
-	}
-	public void setFuncionario(FuncionarioRequestModel funcionario) {
-		this.funcionario = funcionario;
 	}
 }

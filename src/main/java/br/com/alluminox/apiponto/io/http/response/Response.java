@@ -22,12 +22,12 @@ public class Response<T> implements Serializable  {
 	
 
 	public Response(T arg0, List<String> arg1) {
-		this(arg0);
+		this.data = arg0;
 		this.validationErrors = arg1;
 	}
 	
 	public void addError(String validationError) {
-		if(!validationError.contains(validationError))
+		if(!validationErrors.contains(validationError))
 			this.validationErrors.add(validationError);
 	}
 	

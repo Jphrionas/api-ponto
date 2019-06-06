@@ -1,6 +1,8 @@
-package br.com.alluminox.apiponto.data.services;
+package 	br.com.alluminox.apiponto.data.services;
 
 import java.util.Optional;
+
+import javax.validation.Valid;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,23 +25,38 @@ public class EmpresaService implements IService<Empresa, EmpresaRequestModel, Em
 	
 	@Override
 	public Optional<EmpresaDTO> save(EmpresaRequestModel requestModel) {
-		if(empresaExists(requestModel.getCnpj())) {
+		if(find(requestModel.getCnpj()).isPresent()) {
 			throw new RuntimeException("A empresa já está cadastrada");
 		}
-		
+	
 		Optional<EmpresaDTO> empresaDtoOpt = transformDto(requestModel);
 		Optional<Empresa> empresaOpt = transformEntity(empresaDtoOpt.get());
 		
 		// Salvar
 		Empresa empresa = empresaOpt.get();
-		empresaRepository.save(empresa);
+		empresa = empresaRepository.save(empresa);
+		
 		
 		return Optional.ofNullable(modelMapper.map(empresa, EmpresaDTO.class));
 	}
 	
+	public Optional<EmpresaDTO> updateBody(@Valid EmpresaRequestModel requestModel) {
+		Optional<Empresa> empresaOpt = find(requestModel.getCnpj());
+		if(!find(requestModel.getCnpj()).isPresent()) {
+			throw new RuntimeException("A empresa não está cadastrada em nossa base!");
+		}
 	
-	public boolean empresaExists(String cnpj) {
-		return empresaRepository.findByCnpj(cnpj).isPresent();
+		Empresa empresa = empresaOpt.get();
+		empresa.setCnpj(requestModel.getCnpj());
+		empresa.setRazaoSocial(requestModel.getRazaoSocial());
+		empresa.setNumeroInscricao(requestModel.getNumeroInscricao());
+		empresa = this.empresaRepository.save(empresa);
+		
+		return Optional.ofNullable(modelMapper.map(empresa, EmpresaDTO.class));
+	}
+
+	public Optional<Empresa> find(String cnpj) {
+		return empresaRepository.findByCnpj(cnpj);
 	}
 
 	@Override
@@ -50,7 +67,6 @@ public class EmpresaService implements IService<Empresa, EmpresaRequestModel, Em
 	@Override
 	public Optional<Empresa> transformEntity(EmpresaDTO dto) {
 		return Optional.ofNullable(this.modelMapper.map(dto, Empresa.class));
-	}
-	
+	}	
 
 }

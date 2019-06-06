@@ -3,10 +3,10 @@ package br.com.alluminox.apiponto.io.http.request;
 import java.util.Date;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
 
 import br.com.alluminox.apiponto.io.model.enums.Perfil;
 
@@ -24,8 +24,7 @@ public class FuncionarioRequestModel implements RequestModel {
 	private String email;
 	
 	@NotEmpty(message = "O campo senha é obrigatório")
-	@Min(value = 8, message = "Mínino de 8 caracteres para a senha")
-	@Max(value = 8, message = "Máximo de 8 caracteres para a senha")
+	@Length(min = 8, max = 16, message = "Insira uma senha entre 8 a 16 caracteres")
 	private String senha;
 	
 	@NotEmpty(message = "O campo cpf é obrigatório")

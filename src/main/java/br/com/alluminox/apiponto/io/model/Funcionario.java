@@ -92,6 +92,8 @@ public class Funcionario implements Serializable {
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "funcionario", orphanRemoval = true, fetch = FetchType.LAZY)
 	private List<Lancamento> lancamentos;
+
+	private Long expirationTime;
 	
 	public Funcionario() {}
 	
@@ -246,6 +248,14 @@ public class Funcionario implements Serializable {
 	public void setToken(String token) {
 		this.token = token;
 	}
-	
-	
+
+	public Long getExpirationTime() {
+		return expirationTime;
+	}
+
+	public void setExpirationTime(Long expirationTime) {
+		this.expirationTime = expirationTime;
+	}
+
+
 }

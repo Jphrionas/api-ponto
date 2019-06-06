@@ -39,7 +39,7 @@ public class Empresa implements Serializable {
 	private String razaoSocial;
 	
 	@Column(name = "numero_inscricao", nullable = false)
-	private String numeroIncricao;
+	private String numeroInscricao;
 	
 	@Column(name = "cnpj", nullable = false)
 	private String cnpj;
@@ -57,6 +57,10 @@ public class Empresa implements Serializable {
 	
 	public Empresa() {}
 	
+	public Empresa(Long id) {
+		this.id = id;
+	}
+
 	@PrePersist
 	public void prePersist() {
 		Date date = new Date();
@@ -65,7 +69,7 @@ public class Empresa implements Serializable {
 		}
 		
 		this.dataAtualizacao = date;
-		this.publicId = UUID.randomUUID().toString();
+		this.setPublicId(UUID.randomUUID().toString());
 		this.privateId = UUID.randomUUID().toString();
 	}
 	
@@ -94,12 +98,12 @@ public class Empresa implements Serializable {
 		this.razaoSocial = razaoSocial;
 	}
 
-	public String getNumeroIncricao() {
-		return numeroIncricao;
+	public String getNumeroInscricao() {
+		return numeroInscricao;
 	}
 
-	public void setNumeroIncricao(String numeroIncricao) {
-		this.numeroIncricao = numeroIncricao;
+	public void setNumeroInscricao(String numeroInscricao) {
+		this.numeroInscricao = numeroInscricao;
 	}
 
 	public String getCnpj() {
@@ -134,5 +138,16 @@ public class Empresa implements Serializable {
 		this.privateId = privateId;
 	}
 
+	public static void main(String[] args) {
+		System.out.println(UUID.randomUUID().toString());
+	}
+
+	public String getPublicId() {
+		return publicId;
+	}
+
+	public void setPublicId(String publicId) {
+		this.publicId = publicId;
+	}
 }
 

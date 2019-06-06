@@ -9,7 +9,7 @@ public class EmpresaRequestModel implements RequestModel {
 	private String razaoSocial;
 	
 	@NotEmpty(message = "O campo numeroInscrição é obrigatório")
-	private String numeroIncricao;
+	private String numeroInscricao;
 	
 	@NotEmpty(message = "O campo cnpj é obrigatório")
 	private String cnpj;
@@ -21,11 +21,11 @@ public class EmpresaRequestModel implements RequestModel {
 		this.razaoSocial = razaoSocial;
 	}
 	
-	public String getNumeroIncricao() {
-		return numeroIncricao;
+	public String getNumeroInscricao() {
+		return numeroInscricao;
 	}
-	public void setNumeroIncricao(String numeroIncricao) {
-		this.numeroIncricao = numeroIncricao;
+	public void setNumeroInscricao(String numeroInscricao) {
+		this.numeroInscricao = numeroInscricao;
 	}
 	
 	public String getCnpj() {
