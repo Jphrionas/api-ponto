@@ -14,6 +14,10 @@ public interface LancamentoRepository extends PagingAndSortingRepository<Lancame
 	
 	@Query("select l from Lancamento l join fetch l.funcionario f where f.cpf = :cpf")
 	List<Lancamento> findAllByFuncionario(@Param("cpf") String cpf);
-
 	
+	@Query("select l from Lancamento l join fetch l.funcionario f where f.token = :token order by l.id  desc")
+	List<Lancamento> findLastLancamentoByFuncionario(@Param("token") String token);
+	
+	@Query("select l from Lancamento l join fetch l.funcionario f where f.token = :token order by l.id desc")
+	List<Lancamento> findLancamentosDia(@Param("token")  String token);
 }

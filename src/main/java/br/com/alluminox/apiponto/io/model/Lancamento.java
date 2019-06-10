@@ -1,7 +1,9 @@
 package br.com.alluminox.apiponto.io.model;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -55,11 +57,17 @@ public class Lancamento implements Serializable {
 
 	@PrePersist
 	public void prePersist() {
-		Date date = new Date();
+		Date date = Calendar.getInstance(TimeZone.getTimeZone("GMT-3"))
+				.getTime();
 		if (dataCriacao == null)
 			this.dataCriacao = date;
+		
+		
+		if(data == null) 
+			this.data = date;
+		
 
-		this.data = date;
+		
 		this.dataAtualizacao = date;
 		this.publicId = UUID.randomUUID().toString();
 	}

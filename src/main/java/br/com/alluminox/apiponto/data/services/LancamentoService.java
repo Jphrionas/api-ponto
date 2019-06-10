@@ -1,8 +1,12 @@
 package br.com.alluminox.apiponto.data.services;
 
+import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
+import java.util.TimeZone;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +40,16 @@ public class LancamentoService implements IService<Lancamento, LancamentoRequest
 			throw new RuntimeException("Funcionario não existe para o lancamento");	
 		}
 		
+		
+		
 		Lancamento transform = modelMapper.map(requestModel, Lancamento.class);
 		transform.setFuncionario(funcionario);
+		
+		// Crio uma Nova Data
+		Calendar now = Calendar.getInstance(TimeZone.getTimeZone(ZoneId.of("UTC")), new Locale("pt", "BR"));
+		now.setTimeZone(TimeZone.getTimeZone("GMT-3"));
+		transform.setData(now.getTime());
+		
 		Lancamento lancamento = this.lancamentoRepository.save(transform);
 	
 		return Optional.ofNullable(modelMapper.map(lancamento, LancamentoDTO.class));
@@ -61,6 +73,18 @@ public class LancamentoService implements IService<Lancamento, LancamentoRequest
 	@Override
 	public Optional<LancamentoDTO> save(LancamentoRequestModel arg0) {
 		return null;
+	}
+
+	public Lancamento verificarLancamento(LancamentoRequestModel requestModel, String token) {
+		List<Lancamento> lista = this.lancamentoRepository.findLastLancamentoByFuncionario(token);
+		
+		return lista.get(0);
+	}
+	
+	
+	public List<Lancamento> buscarLancamentosDia(String token) {
+		return this.lancamentoRepository.findLancamentosDia(token);
+		
 	}
 
 }

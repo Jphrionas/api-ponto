@@ -1,7 +1,6 @@
 package br.com.alluminox.apiponto.io.http.request;
 
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 import br.com.alluminox.apiponto.io.model.enums.TipoLancamento;
 
@@ -14,7 +13,6 @@ public class LancamentoRequestModel implements RequestModel {
 	@NotEmpty(message = "O campo coords é obrigatório")
 	private String coords; // x=1,y=2,z=3
 
-	@NotNull(message = "O campo lancamento é obrigatório")
 	private TipoLancamento tipoLancamento;
 
 	public String getDescricao() {

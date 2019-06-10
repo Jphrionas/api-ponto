@@ -82,7 +82,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	}
 	
 	protected boolean tokenAndExpirationTimeIsValid(String token, Long expirationTime) {
-		Boolean tokenValid = token != null && token.isEmpty();
+		Boolean tokenValid = token != null && !token.isEmpty();
 		Boolean expirationTimeValid = expirationTime != null && new Date().before(new Date(expirationTime));
 		return tokenValid && expirationTimeValid;
 	}
